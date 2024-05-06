@@ -15,7 +15,7 @@ import { PaginatorModule } from 'primeng/paginator';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  constructor(private productService: ProductsService) {}
+  constructor(private productsService: ProductsService) {}
 
   products: Product[] = [];
   totalRecords: number = 0;
@@ -27,12 +27,57 @@ export class HomeComponent implements OnInit {
   }
 
   fetchProducts(page: number, perPage: number) {
-    this.productService
+    this.productsService
       .getProducts('http://localhost:3000/clothes', { page, perPage })
       .subscribe((products: Products) => {
         console.log(products.items);
         this.products = products.items;
         this.totalRecords = products.total;
+      });
+  }
+
+  editProduct(product: Product, id: number) {
+    this.productsService
+      .editProduct(`http://localhost:3000/clothes/${id}`, product)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.fetchProducts(0, this.rows);
+          // this.resetPaginator();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+  }
+
+  addProduct(product: Product) {
+    this.productsService
+      .addProduct(`http://localhost:3000/clothes`, product)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.fetchProducts(0, this.rows);
+          // this.resetPaginator();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+  }
+
+  deleteProduct(id: number) {
+    this.productsService
+      .deleteProduct(`http://localhost:3000/clothes/${id}`)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.fetchProducts(0, this.rows);
+          // this.resetPaginator();
+        },
+        error: (error) => {
+          console.log(error);
+        },
       });
   }
 
