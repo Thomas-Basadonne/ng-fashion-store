@@ -1,0 +1,27 @@
+<div class="card flex justify-content-center text-center">
+  <p-card header="{{ product.name }}" [style]="{ width: '360px' }">
+    <ng-template pTemplate="header">
+      <img alt="Card" src="{{ product.image }}" class="border-round" />
+    </ng-template>
+
+    <p class="mb-3">Prezzo: {{ product.price }}$</p>
+    <p-rating
+      [(ngModel)]="product.rating"
+      class=""
+      [readonly]="true"
+      [cancel]="false"
+    />
+
+    <!-- <ng-template pTemplate="footer">
+      <div class="flex gap-3 mt-1">
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          class="w-full"
+          styleClass="w-full"
+        />
+        <p-button label="Save" class="w-full" styleClass="w-full" />
+      </div>
+    </ng-template> -->
+  </p-card>
+</div>
