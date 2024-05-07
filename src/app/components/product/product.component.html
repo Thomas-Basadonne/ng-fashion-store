@@ -1,10 +1,13 @@
 <div class="card flex justify-content-center text-center">
-  <p-card header="{{ product.name }}" [style]="{ width: '360px' }">
+  <p-card
+    header="{{ product.name | truncate : 16 : '...' }} "
+    [style]="{ width: '360px' }"
+  >
     <ng-template pTemplate="header">
       <img alt="Card" src="{{ product.image }}" class="border-round" />
     </ng-template>
 
-    <p class="mb-3">Prezzo: {{ product.price }}$</p>
+    <p class="mb-3">Prezzo: {{ product.price | price }}</p>
     <p-rating
       [(ngModel)]="product.rating"
       class=""

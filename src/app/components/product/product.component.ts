@@ -15,6 +15,8 @@ import { RatingModule } from 'primeng/rating';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { PricePipe } from '../../pipes/price.pipe';
 
 @Component({
   selector: 'app-product',
@@ -28,6 +30,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     ButtonModule,
     DialogModule,
     ConfirmPopupModule,
+    TruncatePipe,
+    PricePipe,
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './product.component.html',
