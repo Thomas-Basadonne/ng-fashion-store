@@ -1,4 +1,4 @@
-<div class="card flex justify-content-center text-center">
+<div class="card flex justify-content-center text-center my-3">
   <p-card
     header="{{ product.name | truncate : 16 : '...' }} "
     [style]="{ width: '360px' }"
@@ -22,7 +22,7 @@
           pButton
           icon="pi pi-pencil"
           (click)="editProduct()"
-          label="Edit"
+          label="Modifica"
           class="w-full"
           styleClass="w-full"
         ></button>
@@ -31,7 +31,7 @@
           pButton
           icon="pi pi-trash"
           (click)="confirmDelete()"
-          label="Delete"
+          label="Elimina"
           class="w-full bg-red-500"
           styleClass="w-full"
           #deleteButton

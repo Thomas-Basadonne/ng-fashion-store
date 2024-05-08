@@ -19,17 +19,14 @@ export class ProductsService {
     });
   };
 
-  // Adding a product via the API
   addProduct = (url: string, body: any): Observable<any> => {
     return this.apiService.post(url, body, {});
   };
 
-  // Editing a product via the API
   editProduct = (url: string, body: any): Observable<any> => {
     return this.apiService.put(url, body, {});
   };
 
-  // Deleting a product via the API
   deleteProduct = (url: string): Observable<any> => {
     return this.apiService.delete(url, {});
   };

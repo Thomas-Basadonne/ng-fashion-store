@@ -38,28 +38,34 @@ import { PricePipe } from '../../pipes/price.pipe';
   styleUrl: './product.component.scss',
 })
 export class ProductComponent {
+  // DI service PrimeNg
   constructor(private confirmationService: ConfirmationService) {}
 
-  @ViewChild('deleteButton') deleteButton: any;
+  @ViewChild('deleteButton') deleteButton: any; // Referenza al pulsante di eliminazione
 
-  @Input() product!: Product;
+  @Input() product!: Product; // Input per il prodotto da visualizzare
+
+  // Eventi emessi quando si modifica o elimina il prodotto
   @Output() edit: EventEmitter<Product> = new EventEmitter<Product>();
   @Output() delete: EventEmitter<Product> = new EventEmitter<Product>();
 
+  // Metodo di modifica che emette l'evento 'edit' con il prodotto da modificare
   editProduct() {
     this.edit.emit(this.product);
   }
 
+  // Metodo per confermare l'eliminazione del prodotto
   confirmDelete() {
     this.confirmationService.confirm({
-      target: this.deleteButton.nativeElement,
-      message: 'Are you sure that you want to delete this product?',
+      target: this.deleteButton.nativeElement, // Specifica il pulsante di eliminazione come target per la conferma
+      message: 'Sei sicuro di voler eliminare il prodotto?',
       accept: () => {
-        this.deleteProduct();
+        this.deleteProduct(); // Chiama il metodo per eliminare il prodotto
       },
     });
   }
 
+  // Metodo per eliminare effettivamente il prodotto
   deleteProduct() {
     this.delete.emit(this.product);
   }
